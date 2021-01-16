@@ -84,7 +84,7 @@ public class MainController {
 	 * @return
 	 * @throws Exception
 	 */
-	@GetMapping("/oauth/callback")
+	@GetMapping("/Callback")
 	public String saveAuthorizationCode(HttpServletRequest request) throws Exception {
 		logger.debug("SSO Callback invoked...");
 		String code = request.getParameter("code");
@@ -124,4 +124,11 @@ public class MainController {
 		driveService.uploadFile(multipartFile);
 		return "redirect:/home?status=success";
 	}
+
+    @GetMapping("/download")
+    public String downloadFile(HttpServletRequest request) throws Exception {
+        driveService.downloadFile();
+        return "redirect:/home?status=success";
+    }
+
 }
